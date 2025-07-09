@@ -1,7 +1,8 @@
 from ecdsa import SigningKey, SECP256k1
 from base58 import b58decode, b58encode
-from Crypto.Hash import RIPEMD160, SHA256  # Or hashlib
+from Cryptodome.Hash import RIPEMD160,SHA256
 from sys import argv
+
 
 # Generate checksum
 def getChecksum(hash):
@@ -13,7 +14,7 @@ def getChecksum(hash):
     return checksum
 
 # Wallet import fromat to hex
-def getPrivetKey(WIF: str) -> bytes:
+def getPrivateKey(WIF: str) -> bytes:
     try:
         decodedValue = b58decode(WIF).hex()
         if decodedValue[:2] == '80':
@@ -92,11 +93,9 @@ def main(privet_key: bytes = None):
 if not len(argv) == 1:
     print("[INFO]  Loading BTC wallet from privet-key...")
     if (len(argv[1])) == 52 or len(argv[1]) == 51:
-        main(bytes.fromhex(getPrivetKey(argv[1])))
-
+        main(getPrivateKey(argv[1]))
     elif (len(argv[1])) == 64:
         main(bytes.fromhex(argv[1]))
-
     else:
         print("[ERROR]  Unknown key type!")
 else:
@@ -104,4 +103,4 @@ else:
     main()
 
 #main("<privet-key-hexadecimal>")
-#main(getPrivetKey("<WIF key>"))
+#main(getPrivateKey("<WIF key>"))

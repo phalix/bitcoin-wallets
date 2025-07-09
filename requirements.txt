@@ -1,3 +1,12 @@
-ecdsa
-base58
-Crypto
+base58==2.1.1
+certifi==2025.7.9
+charset-normalizer==3.4.2
+ecdsa==0.19.1
+idna==3.10
+Naked==0.1.32
+pycryptodomex==3.23.0
+PyYAML==6.0.2
+requests==2.32.4
+shellescape==3.8.1
+six==1.17.0
+urllib3==2.5.0
